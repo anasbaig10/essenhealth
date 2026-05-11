@@ -126,7 +126,7 @@ See `architecture.md` for full system design:
 - EHR integration design
 - Trade-offs
 
-## Assumptions
+## Note
 
 - Reference date fixed to 2026-05-08 to match the provided static dataset
 - HbA1c cutoff: 2025-11-08 (6 months prior)
