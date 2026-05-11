@@ -2,7 +2,9 @@
 
 ## Overview
 
-This system is a clinical rules engine for a population health platform. It ingests patient demographics, diagnoses, labs, and encounter history, applies program-specific eligibility and risk stratification rules, and generates actionable tasks for two types of clinical staff: schedulers (who book appointments directly) and clinical team members (who review and approve referrals). The current implementation supports two programs — Primary Care Wellness and Diabetes Management — and is designed so that adding new programs or care protocols requires minimal structural changes to existing code.
+This system is a clinical rules engine for a population health platform. It ingests patient demographics, diagnoses, labs, and encounter history, applies program-specific eligibility and risk stratification rules, and generates actionable tasks for two types of clinical staff: schedulers (who book appointments directly) and clinical team members (who review and approve referrals). The current implementation supports two programs — Primary Care Wellness and Diabetes Management and is designed so that adding new programs or care protocols requires minimal structural changes to existing code.
+
+The current dataset includes 300 patients across two programs. 288 patients qualify for Primary Care Wellness. 115 diabetic patients qualify for Diabetes Management. 115 patients are enrolled in both programs simultaneously. The engine generates 278 tasks — 170 scheduling and 108 referral for 155 patients with active care needs.
 
 ## Data Flow
 
