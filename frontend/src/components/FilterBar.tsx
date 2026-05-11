@@ -81,6 +81,7 @@ export default function FilterBar({
               {t}
             </option>
           ))}
+          <option value="lab_order">Lab Order</option>
         </select>
       </label>
     </div>

@@ -1,5 +1,5 @@
 from datetime import date
-from config import REFERENCE_DATE
+from config import REFERENCE_DATE, HBAIC_CUTOFF
 
 
 def generate_task(patient_id: str, need, conn) -> dict | None:
@@ -52,6 +52,31 @@ def generate_task(patient_id: str, need, conn) -> dict | None:
     return None
 
 
+def handle_lab_order(patient_id, need, conn):
+    # Check if patient had this lab recently
+    recent = conn.execute("""
+        SELECT result_date FROM labs
+        WHERE patient_id = ?
+        AND test_name = ?
+        AND result_date >= ?
+        ORDER BY result_date DESC
+        LIMIT 1
+    """, (patient_id, need.specialty, str(HBAIC_CUTOFF))).fetchone()
+
+    if recent:
+        return None  # lab done recently, no task needed
+
+    return {
+        "specialty": need.specialty,
+        "task_type": "lab_order",
+        "need_type": need.need_type,
+        "cadence_days": need.cadence_days,
+        "last_visit": None,
+        "days_overdue": None,
+    }
+
+
 TASK_HANDLERS = {
     "specialist_visit": generate_task,
+    "lab_order": handle_lab_order,
 }

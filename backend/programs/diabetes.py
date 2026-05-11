@@ -60,7 +60,10 @@ class DiabetesManagement(ClinicalProgram):
                 ClinicalNeed("Ophthalmology", 365),
             ]
         # Unmonitored
-        return [ClinicalNeed("Endocrinology", 90)]
+        return [
+            ClinicalNeed("Endocrinology", 90),
+            ClinicalNeed("HbA1c", 90, need_type="lab_order"),
+        ]
 
 
 PROGRAM_REGISTRY.append(DiabetesManagement())
